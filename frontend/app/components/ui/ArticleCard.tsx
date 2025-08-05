@@ -18,7 +18,7 @@ type ArticleCardProps = {
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <div className="bg-slate-800/50 rounded-lg overflow-hidden shadow-lg group transform transition-transform duration-300 hover:-translate-y-2">
-      <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+      <Image src={article.image} alt={article.title} className="w-full h-48 object-cover" />
       <div className="p-6">
         <div className="flex items-center text-amber-400 text-sm font-semibold mb-2">
           {article.icon}

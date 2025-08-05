@@ -25,7 +25,7 @@ export default function AboutUsSection() {
         {/* --- SECCIÓN DEL FUNDADOR --- */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-6xl mx-auto mb-24">
           <div className="lg:col-span-2">
-            <img 
+            <Image 
               src="https://placehold.co/500x500/1e293b/ffffff?text=Fundador" 
               alt="Fundador de El Rincón del Detective"
               className="rounded-full shadow-2xl mx-auto ring-4 ring-amber-500/50"

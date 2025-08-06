@@ -1,4 +1,5 @@
 // frontend/src/components/ui/ArticleCard.tsx
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 // Definimos los tipos para las props que el componente recibirá.
@@ -18,7 +19,14 @@ type ArticleCardProps = {
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <div className="bg-slate-800/50 rounded-lg overflow-hidden shadow-lg group transform transition-transform duration-300 hover:-translate-y-2">
-      <Image src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+      <Image
+        src={article.image}
+        alt={article.title}
+        width={600} // <-- AÑADE EL ANCHO
+        height={400} // <-- AÑADE EL ALTO
+        className="w-full h-48 object-cover" 
+        unoptimized // <-- AÑADE ESTA PROPIEDAD
+        />
       <div className="p-6">
         <div className="flex items-center text-amber-400 text-sm font-semibold mb-2">
           {article.icon}

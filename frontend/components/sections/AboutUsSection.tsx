@@ -1,10 +1,10 @@
 // frontend/src/components/sections/AboutUsSection.tsx
-
+import Image from 'next/image';
 import { Target, Shield, HeartHandshake, Lightbulb } from 'lucide-react';
 import ValueCard from '../ui/ValueCard';
 
 export default function AboutUsSection() {
-  
+
   return (
     // Es MUY IMPORTANTE añadir un nuevo id, "sobre-nosotros", para el enlace del menú.
     <section id="sobre-nosotros" className="py-20 md:py-28 bg-slate-900">
@@ -12,7 +12,7 @@ export default function AboutUsSection() {
 
         {/* --- TÍTULO Y MISIÓN --- */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <Target className="w-16 h-16 mx-auto mb-4 text-amber-500"/>
+          <Target className="w-16 h-16 mx-auto mb-4 text-amber-500" />
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-shadow-lg">
             Nuestra Misión
           </h2>
@@ -25,10 +25,13 @@ export default function AboutUsSection() {
         {/* --- SECCIÓN DEL FUNDADOR --- */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-6xl mx-auto mb-24">
           <div className="lg:col-span-2">
-            <Image 
-              src="https://placehold.co/500x500/1e293b/ffffff?text=Fundador" 
+            <Image
+              src="https://placehold.co/500x500/1e293b/ffffff?text=Fundador"
               alt="Fundador de El Rincón del Detective"
+              width={500} // <-- AÑADE EL ANCHO
+              height={500} // <-- AÑADE EL ALTO
               className="rounded-full shadow-2xl mx-auto ring-4 ring-amber-500/50"
+              unoptimized // <-- AÑADE ESTA PROPIEDAD
             />
           </div>
           <div className="lg:col-span-3">

@@ -1,7 +1,8 @@
+"use client";
 // frontend/src/components/sections/RinconSection.tsx
 import { useState } from 'react';
 import ArticleCard from '../ui/ArticleCard'; // <-- Importamos la tarjeta
-import { articles } from '../../data/articles'; // <-- Importamos los datos
+import { articles } from '@/lib/articles';// <-- Importamos los datos
 
 export default function RinconSection() {
   const [activeFilter, setActiveFilter] = useState('Todos');

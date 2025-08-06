@@ -1,7 +1,7 @@
 // frontend/src/components/sections/ForumSection.tsx
 import { Users } from 'lucide-react';
 import ChannelCard from '../ui/ChannelCard';
-import { forumChannels } from '../../data/forumChannels';
+import { forumChannels } from '@/lib/forumChannels';
 
 export default function ForumSection() {
   return (

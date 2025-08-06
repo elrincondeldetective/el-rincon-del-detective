@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es"> {/* Cambia el idioma a español */}
+    <html lang="es">
       <body className={`${inter.className} bg-slate-900 min-h-screen font-sans text-white`}>
         <Navbar />
         {children} {/* Aquí es donde se renderizará tu `page.tsx` */}

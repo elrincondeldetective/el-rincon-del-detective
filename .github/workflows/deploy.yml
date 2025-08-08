@@ -1,1 +1,32 @@
 # .github/workflows/deploy.yml
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    # Define el entorno basado en la rama que activó el workflow
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
+      url: ${{ steps.deploy.outputs.url }} # La URL se mostrará en GitHub
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Aquí irían los pasos para desplegar en AWS Amplify
+      # Por ahora, simularemos un despliegue exitoso
+      - name: Simulate Deployment
+        id: deploy
+        run: echo "url=https://elrincondeldetective.com" >> $GITHUB_OUTPUT

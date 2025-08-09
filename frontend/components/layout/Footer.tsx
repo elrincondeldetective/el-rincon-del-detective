@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-slate-900 border-t border-slate-800">
       <div className="container mx-auto px-6 py-8 text-center text-slate-400">
         {/* Párrafo de copyright con el año actual */}
-        <p>&copy; {currentYear} ElRinconDelDetective.com. Todos los derechos reservados.</p>
+        <p>&copy; {currentYear} ElRinconDelDetective®. Todos los derechos reservados.</p>
         
         {/* Lema o eslogan del sitio */}
         <p className="text-sm mt-2">Un espacio para la verdad y la justicia en la era digital.</p>

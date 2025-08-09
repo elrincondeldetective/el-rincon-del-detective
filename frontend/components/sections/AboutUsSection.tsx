@@ -28,10 +28,10 @@ export default function AboutUsSection() {
             <Image
               src="https://placehold.co/500x500/1e293b/ffffff?text=Fundador"
               alt="Fundador de El Rincón del Detective"
-              width={500} // <-- AÑADE EL ANCHO
-              height={500} // <-- AÑADE EL ALTO
+              width={500} 
+              height={500} 
               className="rounded-full shadow-2xl mx-auto ring-4 ring-amber-500/50"
-              unoptimized // <-- AÑADE ESTA PROPIEDAD
+              unoptimized 
             />
           </div>
           <div className="lg:col-span-3">

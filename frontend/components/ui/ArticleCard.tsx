@@ -22,10 +22,10 @@ export default function ArticleCard({ article }: ArticleCardProps) {
       <Image
         src={article.image}
         alt={article.title}
-        width={600} // <-- AÑADE EL ANCHO
-        height={400} // <-- AÑADE EL ALTO
+        width={600} 
+        height={400} 
         className="w-full h-48 object-cover" 
-        unoptimized // <-- AÑADE ESTA PROPIEDAD
+        unoptimized 
         />
       <div className="p-6">
         <div className="flex items-center text-amber-400 text-sm font-semibold mb-2">

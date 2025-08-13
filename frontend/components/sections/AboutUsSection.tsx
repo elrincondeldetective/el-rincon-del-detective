@@ -17,7 +17,7 @@ export default function AboutUsSection() {
             Nuestra Misión
           </h2>
           <p className="text-xl italic text-slate-300">
-            "Creemos que nadie debería enfrentar la injusticia solo. Nuestra misión es devolverle el poder a la víctima, transformando la confusión y el miedo en claridad y acción, a través de la investigación profesional y el apoyo humano."
+            &ldquo;Creemos que nadie debería enfrentar la injusticia solo. Nuestra misión es devolverle el poder a la víctima, transformando la confusión y el miedo en claridad y acción, a través de la investigación profesional y el apoyo humano.&rdquo;
           </p>
         </div>
 
@@ -37,7 +37,7 @@ export default function AboutUsSection() {
           <div className="lg:col-span-3">
             <h3 className="text-3xl font-bold text-white mb-4">Un Detective para la Era Digital</h3>
             <p className="text-slate-300 mb-4 text-lg">
-              Mi nombre es [Tu Nombre], y fundé "El Rincón del Detective" por una doble pasión: la fascinación por el arte de la deducción y una profunda necesidad de combatir la injusticia que prolifera en el anonimato de internet.
+              Mi nombre es [Tu Nombre], y fundé &ldquo;El Rincón del Detective&rdquo; por una doble pasión: la fascinación por el arte de la deducción y una profunda necesidad de combatir la injusticia que prolifera en el anonimato de internet.
             </p>
             <p className="text-slate-400 mb-4">
               Durante años, vi cómo amigos, familiares y noticias reportaban estafas donde las víctimas se sentían completamente desamparadas. La tecnología que nos conecta también se había convertido en un arma para los estafadores. Decidí que no podía quedarme de brazos cruzados.

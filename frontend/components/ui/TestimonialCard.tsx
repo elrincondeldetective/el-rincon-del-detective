@@ -19,7 +19,7 @@ export default function TestimonialCard({ quote, author, role }: TestimonialCard
       <Quote className="w-8 h-8 text-amber-500 mb-4" />
       
       {/* El texto de la cita, en itálica para diferenciarlo. */}
-      <p className="text-slate-300 mb-4 italic">"{quote}"</p>
+      <p className="text-slate-300 mb-4 italic">&ldquo;{quote}&rdquo;</p>
       
       {/* Contenedor para la información del autor, alineado a la derecha. */}
       <div className="text-right">

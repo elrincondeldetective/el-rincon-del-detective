@@ -10,5 +10,5 @@ const backend = defineBackend({
     // Es relativo a la raíz del proyecto.
     path: "./frontend/dist",
   }),
-  // auth, <--- descomentarías esto si añades autenticación...
+  // auth, <--- descomentarías esto si añades autenticación.......
 });

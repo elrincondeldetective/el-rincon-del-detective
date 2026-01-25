@@ -1,8 +1,6 @@
-# /webapps/erd-ecosystem/apps/el-rincon-del-detective/Taskfile.yaml
 version: '3'
 
 includes:
-  # Importamos devtools para tener acceso a los comandos globales si hacen falta
   devtools:
     taskfile: .devtools/Taskfile.yaml
     dir: .
@@ -14,7 +12,7 @@ tasks:
     cmds:
       - task --list
 
-  # ✅ CI Específico para Next.js (Frontend Only)
+  # CI Específico para Next.js
   ci:
     desc: "Ejecutar CI local (Install + Lint + Build Static)"
     dir: frontend
@@ -26,12 +24,11 @@ tasks:
       - echo "🏗️ [CI] Building (Export)..."
       - npm run build
 
-  # No necesitamos 'build' de Docker aquí porque usamos Amplify Hosting (Source Code)
-  # Pero dejamos un placeholder por si usas el generador genérico
+  # Sobrescribimos build para evitar Docker
   build:
     desc: "Build placeholder (Amplify gestiona el build en la nube)"
     cmds:
-      - echo "ℹ️ Esta app usa Amplify Hosting. Usa 'task ci' para validar el build localmente."
+      - echo "ℹ️ Esta app usa Amplify Hosting. El build real ocurre en 'task ci'."
 
   start:
     desc: "Iniciar servidor de desarrollo"

@@ -1,4 +1,4 @@
-// backend/backend.ts
+// /webapps/erd-ecosystem/apps/el-rincon-del-detective/backend/backend.ts
 import { defineBackend, defineHosting } from "@aws-amplify/backend";
 
 // Aquí podrías definir la autenticación, datos, etc. en el futuro.
@@ -6,9 +6,9 @@ import { defineBackend, defineHosting } from "@aws-amplify/backend";
 
 const backend = defineBackend({
   hosting: defineHosting({
-    // Esta es la ruta a la carpeta de salida DESPUÉS de compilar tu frontend.
-    // Es relativo a la raíz del proyecto.
-    path: "./frontend/dist",
+    // CAMBIO FASE 4.1: Alineado con Next.js 'output: export'
+    // Next.js genera la carpeta 'out', no 'dist' (que es de Vite).
+    path: "./frontend/out",
   }),
   // auth, <--- descomentarías esto si añades autenticación.......
 });

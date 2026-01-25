@@ -1,4 +1,4 @@
-# .github/workflows/deploy.yml
+# /webapps/erd-ecosystem/apps/el-rincon-del-detective/.github/workflows/deploy.yml
 name: Deploy to AWS
 
 on:
@@ -9,24 +9,48 @@ on:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Build & Deploy
     runs-on: ubuntu-latest
     
     # Define el entorno basado en la rama que activó el workflow
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
-      url: ${{ steps.deploy.outputs.url }} # La URL se mostrará en GitHub
+      # url: ${{ steps.deploy.outputs.url }} # Descomentar cuando integres Amplify real
 
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./apps/el-rincon-del-detective/frontend
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Aquí irían los pasos para desplegar en AWS Amplify
-      # Por ahora, simularemos un despliegue exitoso
-      - name: Simulate Deployment
-        id: deploy
-        run: echo "url=https://elrincondeldetective.com" >> $GITHUB_OUTPUT
+      # 1. Setup Node (Entorno real)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: apps/el-rincon-del-detective/frontend/package-lock.json
+
+      # 2. Instalar dependencias (Clean Install)
+      - name: Install Dependencies
+        run: npm ci
+
+      # 3. Build Real (Validación de compilación)
+      # Esto generará la carpeta 'out' gracias al next.config.ts
+      - name: Build Application
+        run: npm run build
+
+      # 4. Despliegue (Preparado para Amplify Gen 2)
+      # Nota: Para desplegar de verdad, necesitas configurar AWS_ACCESS_KEY_ID en secrets.
+      # Por ahora, aseguramos que el código COMPILA correctamente antes de fusionar.
+      - name: Verify Build Output
+        run: |
+          if [ -d "out" ]; then
+            echo "✅ Build exitoso: Carpeta 'out' generada correctamente."
+            ls -la out
+          else
+            echo "❌ Error: No se generó la carpeta 'out'. Revisa next.config.ts"
+            exit 1
+          fi

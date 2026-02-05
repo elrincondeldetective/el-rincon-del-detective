@@ -1,33 +1,65 @@
-name: Release
+name: Publicar en GitHub por etiquetas
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-on-tag-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    
-    # Define el directorio de trabajo para este job
-    defaults:
-      run:
-        working-directory: ./frontend
-
+  publish:
+    name: Publicar en GitHub por etiqueta
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout code
+      - name: Checkout (historial completo para anotaciones de etiquetas)
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: '20' # Usa la versión de Node que prefieras
+          fetch-depth: 0
+          fetch-tags: true
 
-      - name: Install dependencies
-        run: npm install
+      - name: Actualizar etiquetas (force)
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
 
-      - name: Run semantic-release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.ERD_ECOSYSTEM_CI }}
+      - name: Leer mensaje de etiqueta (notas de publicacion)
+        id: notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME}"
+
+          # Leer el contenido del tag anotado (notas guardadas con -m/-F)
+          body="$(git for-each-ref "refs/tags/${tag}" --format='%(contents)')"
+
+          # Fallback por si el tag fuera lightweight (sin notas)
+          if [ -z "$body" ]; then
+            body="Publicacion ${tag}"
+          fi
+
+          {
+            echo "body<<'EOF'"
+            echo "$body"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          if [[ "$tag" == *"-rc"* || "$tag" == *"-beta"* || "$tag" == *"-alpha"* ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Crear publicacion en GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          body: ${{ steps.notes.outputs.body }}
+          prerelease: ${{ steps.notes.outputs.prerelease }}
+          draft: false
+          generate_release_notes: false
